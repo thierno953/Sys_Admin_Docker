@@ -131,7 +131,7 @@ location ^~ /.well-known {
 
 - Pour mon exemple, ce serait comme ça :
 
-- Adresse des documents ONLYOFFICE : `https://onlyoffice.disco-solar.com/`
+- Adresse des documents ONLYOFFICE : `https://onlyoffice.diarabaka.com/`
 
 - Clé secrète (laisser vide ou désactiver) : SuperSecretToken
 
@@ -139,7 +139,7 @@ location ^~ /.well-known {
 
 - Adresse des documents ONLYOFFICE pour les requêtes internes du serveur : `http://onlyoffice/`
 
-- Adresse du serveur pour les requêtes internes ONLYOFFICE Docs : `https://cloud2.disco-solar.com/`
+- Adresse du serveur pour les requêtes internes ONLYOFFICE Docs : `https://cloud2.diarabaka.com/`
 
 - Avant de sauvegarder, nous devons faire cette configuration :
 
