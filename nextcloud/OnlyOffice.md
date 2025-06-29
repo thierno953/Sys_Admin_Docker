@@ -75,11 +75,7 @@ docker network connect nextcloud_backend onlyoffice
 
 - Nous sommes situés dans le tunnel de notre domaine créé dans le tutoriel précédent et ajoutons un nom d'hôte public
 
-![onlyoffice](/nextcloud/assets/01-onlyoffice.png)
-
 - Dans mon cas, j'ai mis ces données, mais vous pouvez mettre le sous-domaine et le domaine que vous souhaitez, ce qui ne change pas, c'est le service HTTP et votre IP locale avec le port : 8080
-
-![onlyoffice](/nextcloud/assets/02-onlyoffice.png)
 
 - On économise et ce serait tout pour le tunnel
 
