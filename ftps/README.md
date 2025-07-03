@@ -13,27 +13,19 @@ services:
       - "21:21"
       - "30000-30009:30000-30009"
     volumes:
-      - "/home/thierno/ftp:/home/thierno"
+      - "/home/master01/ftp:/home/master01"
       - "/etc/ssl/private:/etc/ssl/private"
-      - "/var/log/pure-ftpd:/var/log" # Volume pour conserver les logs Pure-FTPd
     environment:
-      FTP_USER_NAME: ${FTP_USER_NAME}
-      FTP_USER_PASS: ${FTP_USER_PASS}
-      FTP_USER_HOME: ${FTP_USER_HOME}
-      TLS: 1
+      FTP_USER_NAME: master01
+      FTP_USER_PASS: master0163
+      FTP_USER_HOME: /home/master01
+      TLS: "1"
+      PUBLICHOST: "192.168.129.220"
     restart: always
 
 networks:
   default:
     driver: bridge
-```
-
-- Et ajoutez un fichier .env contenant vos variables sensibles
-
-```sh
-FTP_USER_NAME=thierno
-FTP_USER_PASS=thierno63
-FTP_USER_HOME=/home/thierno
 ```
 
 # Génération des certificats SSL/TLS
@@ -48,9 +40,7 @@ sudo openssl dhparam -out /etc/ssl/private/pure-ftpd-dhparams.pem 2048
 # Générer un certificat auto-signé (remplacez les valeurs du sujet par vos propres informations)
 sudo openssl req -x509 -nodes -newkey rsa:2048 -sha256 \
     -keyout /etc/ssl/private/pure-ftpd.pem \
-    -out /etc/ssl/private/pure-ftpd.pem \
-    -days 365 \ # Durée de validité du certificat (365 jours ici)
-    -subj "/C=FR/ST=State/L=City/O=Organization/CN=ftps.docker.local"
+    -out /etc/ssl/private/pure-ftpd.pem
 
 # Appliquer des permissions strictes sur les fichiers PEM (lecture uniquement par root)
 sudo chmod 600 /etc/ssl/private/*.pem
@@ -98,10 +88,10 @@ docker logs pure-ftpd
   - Entrez les informations suivantes
 
 ```sh
-Hôte : ftps.docker.local (ou l'IP/DNS public si applicable)
+Hôte : <IP> (ou l'IP/DNS public si applicable)
 Port : 21
-Nom d'utilisateur : thierno
-Mot de passe : thierno63
+Nom d'utilisateur : master01
+Mot de passe : master0163
 ```
 
 #### Vérification des connexions passives

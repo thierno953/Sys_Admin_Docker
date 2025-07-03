@@ -11,9 +11,9 @@ services:
       - PGID=1000
       - TZ=Europe/Brussels
     volumes:
-      - /home/thierno/Filezilla:/config
-      # - /home/thierno/nas:/NAS
-      # - /home/thierno/Synology:/SYNOLOGY
+      - /home/master01/Filezilla:/config
+      # - /home/master01/nas:/NAS
+      # - /home/master01/Synology:/SYNOLOGY
     ports:
       - 3300:3000
       - 3301:3001
