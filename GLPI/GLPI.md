@@ -1,30 +1,9 @@
 # Installer GLPI avec Docker + Ubuntu GLPI Agent
 
-#### Nous installons d’abord Docker et Docker Compose
+#### Créons le répertoire glpi et y accédons
 
 ```sh
-apt update
-apt install docker.io docker-compose
-```
-
-#### Nous créons le répertoire glpi et y accédons
-
-```sh
-mkdir glpi
-cd glpi
-```
-
-#### Nous créons le fichier mariadb.env
-
-```sh
-nano mariadb.env
-```
-
-```sh
-MARIADB_ROOT_PASSWORD=diouxx
-MARIADB_DATABASE=glpidb
-MARIADB_USER=glpi_user
-MARIADB_PASSWORD=glpi
+mkdir glpi-server && cd glpi-server
 ```
 
 #### Nous créons maintenant le fichier docker-compose.yml
@@ -34,36 +13,40 @@ nano docker-compose.yml
 ```
 
 ```sh
-version: "3.2"
+version: '3.7'
 
 services:
-  # MariaDB Container
-  mariadb:
-    image: mariadb:10.7
-    container_name: mariadb
-    hostname: mariadb
-    volumes:
-      - ./mariadb_data:/var/lib/mysql
-    env_file:
-      - ./mariadb.env
-    restart: always
-
-  # GLPI Container
-  glpi:
-    image: diouxx/glpi
-    container_name: glpi
-    hostname: glpi
-    ports:
-      - "80:80"
-    volumes:
-      - ./glpi_data:/var/www/html/glpi
-      - /etc/timezone:/etc/timezone:ro
-      - /etc/localtime:/etc/localtime:ro
+  db:
+    image: mariadb:10.5
+    container_name: glpi_db
+    restart: unless-stopped
     environment:
-      - TIMEZONE=Europe/Brussels
-    restart: always
+      MYSQL_DATABASE: glpi_db
+      MYSQL_USER: glpi_db_user
+      MYSQL_PASSWORD: glpi_db_PWD
+      MYSQL_ROOT_PASSWORD: rootpass
+    volumes:
+      - ./storage/mysql:/var/lib/mysql
+    networks:
+      - glpi_net
+
+  glpi:
+    image: glpi/glpi:latest
+    container_name: glpi_web
+    restart: unless-stopped
     depends_on:
-      - mariadb
+      - db
+    ports:
+      - "8081:80"
+    environment:
+      TIMEZONE: Europe/Brussels
+    volumes:
+      - ./storage/glpi:/var/glpi
+    networks:
+      - glpi_net
+
+networks:
+  glpi_net:
 ```
 
 #### Maintenant, nous exécutons le conteneur
@@ -81,23 +64,27 @@ hostname -I
 #### Données d'installation pour cet exemple
 
 ```sh
-mariadb
+db
 
-glpi_user
+glpi_db_user
 
-glpi
+glpi_db_PWD
 ```
 
 #### Répertoire où se trouvent tous les fichiers GLPI
 
 ```sh
-glpi_data
+glpi_db
 ```
 
 #### Sécurisation de GLPI && Supprimer le script d’installation
 
 ```sh
-sudo rm -fr glpi/glpi_data/install/install.php
+docker exec -it glpi_web bash
+
+cd install
+ls -l
+mv install.php install.php_bak
 ```
 
 - Lien vers l'agent GLPI: `https://github.com/glpi-project/glpi-agent/releases`
