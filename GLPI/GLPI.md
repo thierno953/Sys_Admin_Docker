@@ -1,12 +1,12 @@
-# Installer GLPI avec Docker + Ubuntu GLPI Agent
+# Install GLPI with Docker + Ubuntu GLPI Agent
 
-#### Créons le répertoire glpi et y accédons
+### Create the glpi-server directory and navigate into it
 
 ```sh
 mkdir glpi-server && cd glpi-server
 ```
 
-#### Nous créons maintenant le fichier docker-compose.yml
+### Create the docker-compose.yml file
 
 ```sh
 nano docker-compose.yml
@@ -49,35 +49,35 @@ networks:
   glpi_net:
 ```
 
-#### Maintenant, nous exécutons le conteneur
+### Run the containers
 
 ```sh
 docker-compose up -d
 ```
 
-- Pour voir l'IP de notre équipe
+- To check the IP address of your machine:
 
 ```sh
 hostname -I
 ```
 
-#### Données d'installation pour cet exemple
+### Installation credentials for this example
 
 ```sh
-db
+Database: db
 
-glpi_db_user
+Username: glpi_db_user
 
-glpi_db_PWD
+Password: glpi_db_PWD
 ```
 
-#### Répertoire où se trouvent tous les fichiers GLPI
+### Directory containing all GLPI files
 
 ```sh
 glpi_db
 ```
 
-#### Sécurisation de GLPI && Supprimer le script d’installation
+### Secure GLPI & remove the installation script
 
 ```sh
 docker exec -it glpi_web bash
@@ -87,13 +87,11 @@ ls -l
 mv install.php install.php_bak
 ```
 
-- Lien vers l'agent GLPI: `https://github.com/glpi-project/glpi-agent/releases`
+- Link to the GLPI agent releases: [https://github.com/glpi-project/glpi-agent/releases](https://github.com/glpi-project/glpi-agent/releases)
 
-#### URL de l'agent informatique Windows :
+### Windows IT Agent URL: `http://localhost:62354/`
 
-`http://localhost:62354/`
-
-#### Étapes Linux
+### Linux Agent Setup
 
 ```sh
 wget https://github.com/glpi-project/glpi-agent/releases/download/1.15/glpi-agent-1.15-x86_64.AppImage
@@ -109,4 +107,4 @@ sudo ./glpi-agent-1.15-x86_64.AppImage --install --server http://<IP_GLPI_SERVER
 sudo glpi-agent
 ```
 
-- Documentation officielle: `https://hub.docker.com/r/diouxx/glpi`
+- Official documentation: [https://hub.docker.com/r/diouxx/glpi](https://hub.docker.com/r/diouxx/glpi)

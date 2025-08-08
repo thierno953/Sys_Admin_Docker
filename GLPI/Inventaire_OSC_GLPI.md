@@ -1,22 +1,22 @@
-# Connecter l'inventaire OSC à GLPI
+# Connect OSC Inventory to GLPI
 
-#### Téléchargement et installation du plugin
+### Download and Install the Plugin
 
-- Nous allons sur cette route pour télécharger et décompresser le plugin
+- Navigate to this directory to download and extract the plugin:
 
 ```sh
 cd /var/www/html/glpi/plugins/
 ```
 
-- Il s'agit du référentiel du plugin OCS Inventory pour GLPI: `https://github.com/pluginsGLPI/ocsinventoryng/releases`
+- This is the repository for the OCS Inventory plugin for GLPI: [https://github.com/pluginsGLPI/ocsinventoryng/releases](https://github.com/pluginsGLPI/ocsinventoryng/releases)
 
-#### Nous exécutons la commande suivante pour le télécharger
+### Run the following command to download it:
 
 ```sh
 wget https://github.com/pluginsGLPI/ocsinventoryng/releases/download/2.0.4/glpi-ocsinventoryng-2.0.4.tar.bz2
 ```
 
-#### La commande suivante pour décompresser
+### Then extract the archive with this command:
 
 ```sh
 tar xvjf glpi-ocsinventoryng-2.0.4.tar.bz2

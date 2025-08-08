@@ -1,33 +1,34 @@
-#### Création d'un site web simple
+## Creating a Simple Website
 
-- Créez un répertoire dans le dossier personnel de l'utilisateur thierno
+- Create a directory inside user thierno's home folder:
 
 ```sh
 mkdir -p /home/thierno/website/
 ```
 
-- Ajoutez une page HTML avec un message basique dans ce répertoire
+- Add a basic HTML page with a simple message inside this directory:
 
 ```sh
 echo "<h1>Hello index</h1>" > /home/thierno/website/index.html
 ```
 
-#### Déploiement d'un serveur web avec Docker
+## Deploying a Web Server with Docker
 
-- Lancement d'un conteneur Apache avec Docker
-  - Utilisez l'image officielle Apache HTTP Server (httpd:2.4) pour déployer un serveur web qui sert votre fichier HTML
+- Start an Apache container using Docker:
+
+- Use the official Apache HTTP Server image (`httpd:2.4`) to deploy a web server serving your HTML file:
 
 ```sh
 docker run -dit --name thierno-web -p 80:80 -v /home/thierno/website/:/usr/local/apache2/htdocs/ httpd:2.4
 ```
 
-- Arrêter tous les conteneurs Docker
+- Stop all Docker containers:
 
 ```sh
 docker stop $(docker ps -a -q)
 ```
 
-- Supprimer tous les conteneurs Docker
+- Remove all Docker containers:
 
 ```sh
 docker rm $(docker ps -a -q)

@@ -1,53 +1,29 @@
-# Installation d'OSS Inventory Server sur Ubuntu 24.04 avec Docker
+# Installing OSS Inventory Server on Ubuntu 24.04 with Docker
 
-#### Mettons à jour nos référentiels système :
+### OCS Inventory repository
 
-```sh
-sudo apt update
-```
+- Here is the link to the OCS Inventory repository: [https://github.com/OCSInventory-NG/OCSInventory-Docker-Image](https://github.com/OCSInventory-NG/OCSInventory-Docker-Image)
 
-#### Ensuite, nous installons git
-
-```sh
-sudo apt install git
-```
-
-#### Maintenant, nous installons Docker
-
-```sh
-sudo apt install docker.io
-```
-
-#### Nous installons docker-compose
-
-```sh
-sudo apt install docker-compose
-```
-
-#### Référentiel d'inventaire OCS
-
-- Voici le lien vers le référentiel d'inventaire OCS: `https://github.com/OCSInventory-NG/OCSInventory-Docker-Image`
-
-#### Dans notre console :
+### clone the repo:
 
 ```sh
 sudo git clone https://github.com/OCSInventory-NG/OCSInventory-Docker-Image.git
 ```
 
-#### Nous naviguons maintenant à l’intérieur du fichier téléchargé :
+### Navigate inside the downloaded folder:
 
 ```sh
 cd OCSInventory-Docker-Image
 cd 2.12.3
 ```
 
-- Nous éditons le fichier de configuration Docker
+### Edit the Docker configuration file:
 
 ```sh
 sudo nano docker-compose.yml
 ```
 
-- Nous changeons maintenant l'endroit où nous exposons ce qui suit :
+### Change where the port is exposed by uncommenting/modifying this section:
 
 ```sh
 #expose:
@@ -57,22 +33,23 @@ ports:
   - "3306:3306"
 ```
 
-#### Exécuter le conteneur
+### Run the container
 
-- Pour soulever le conteneur, nous utilisons cette commande :
+- To start the container, use this command:
 
 ```sh
 sudo docker-compose up -d
 ```
 
-#### Interface Web
+### Web Interface
 
-- Nous entrons l'IP de l'appareil dans le navigateur et il nous redirigera automatiquement.
-- Le nom d'utilisateur et le mot de passe par défaut sont :
+- Enter your device’s IP in a browser; it will redirect you automatically.
+
+- Default username and password are:
 
 ```sh
 admin
 admin
 ```
 
-- La page de téléchargement de l'agent: `https://ocsinventory-ng.org/?page_id=1548&lang=en`
+- Agent download page: [https://ocsinventory-ng.org/?page_id=1548&lang=en](https://ocsinventory-ng.org/?page_id=1548&lang=en)
